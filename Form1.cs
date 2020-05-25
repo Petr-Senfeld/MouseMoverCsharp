@@ -21,6 +21,7 @@ namespace WindowsFormsApp1
         private const int MOUSEEVENTF_LEFTUP = 0x04;
         // private const int MOUSEEVENTF_RIGHTDOWN = 0x08;
         // private const int MOUSEEVENTF_RIGHTUP = 0x10;
+        bool darkModeOn = false;
 
         public void DoMouseClick()
         {
@@ -64,6 +65,21 @@ namespace WindowsFormsApp1
         private void timer2_Tick(object sender, EventArgs e)
         {
             MoveCursorRight();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (darkModeOn == false)
+            {
+                BackColor = Color.Black;
+                darkModeOn = true;
+            }
+            else
+            {
+                BackColor = Color.White;
+                darkModeOn = false;
+            }
+            
         }
     }
 }
