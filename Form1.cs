@@ -69,17 +69,62 @@ namespace WindowsFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (darkModeOn == false)
+            if (!darkModeOn)
             {
+                button2.Text = "LightMode";
                 BackColor = Color.Black;
+                button1.BackColor = Color.DarkGray;
+                button1.ForeColor = Color.Yellow;
+                button2.BackColor = Color.DarkGray;
+                button2.ForeColor = Color.Yellow;
+                button3.BackColor = Color.DarkGray;
+                button3.ForeColor = Color.Yellow;
+                button4.BackColor = Color.DarkGray;
+                button4.ForeColor = Color.Yellow;
                 darkModeOn = true;
             }
             else
             {
-                BackColor = Color.White;
+                button2.Text = "DarkMode";
+                BackColor = Color.LightBlue;
+                button1.BackColor = Color.AliceBlue;
+                button1.ForeColor = Color.Black;
+                button2.BackColor = Color.AliceBlue;
+                button2.ForeColor = Color.Black;
+                button3.BackColor = Color.AliceBlue;
+                button3.ForeColor = Color.Black;
+                button4.BackColor = Color.AliceBlue;
+                button4.ForeColor = Color.Black;
                 darkModeOn = false;
             }
             
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            timer2.Enabled = false;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (textBox1.ToString().Contains("12345")) 
+            {
+                MessageBox.Show("Voucher je správný. DarkMode odemčen!");
+                button2.Enabled = true;
+                textBox1.Clear();
+            }
+            else if(textBox1.ToString().Contains("67890"))
+            {
+                MessageBox.Show("Voucher je správný. DarkMode odemčen!");
+                button2.Enabled = true;
+                textBox1.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Nedobrá zpráva, špatný voucher.");
+                textBox1.Clear();
+            }
         }
     }
 }
