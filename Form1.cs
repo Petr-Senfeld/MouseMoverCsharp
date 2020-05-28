@@ -3,15 +3,14 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace MouseMover
 {
     public partial class Form1 : Form
     {
-
-
         public Form1()
         {
             InitializeComponent();
+            MessageBox.Show("Tvůrce aplikace nenese žádnou odpovědnost za její použití.");
         }
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
@@ -31,7 +30,7 @@ namespace WindowsFormsApp1
             mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, X, Y, 0, 0);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             // 5sec timer
             timer1.Enabled = true;
@@ -56,18 +55,18 @@ namespace WindowsFormsApp1
             Cursor.Clip = new Rectangle(this.Location, this.Size);
         }
   
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
             MoveCursorLeft();
             DoMouseClick();
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
+        private void Timer2_Tick(object sender, EventArgs e)
         {
             MoveCursorRight();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             if (!darkModeOn)
             {
@@ -97,27 +96,30 @@ namespace WindowsFormsApp1
                 button4.ForeColor = Color.Black;
                 darkModeOn = false;
             }
-            
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             timer1.Enabled = false;
             timer2.Enabled = false;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
-            if (textBox1.ToString().Contains("12345")) 
+            if (textBox1.ToString().Contains("12345"))
             {
                 MessageBox.Show("Voucher je správný. DarkMode odemčen!");
                 button2.Enabled = true;
+                button4.Enabled = false;
+                textBox1.Enabled = false;
                 textBox1.Clear();
             }
-            else if(textBox1.ToString().Contains("67890"))
+            else if (textBox1.ToString().Contains("67890"))
             {
                 MessageBox.Show("Voucher je správný. DarkMode odemčen!");
                 button2.Enabled = true;
+                button4.Enabled = false;
+                textBox1.Enabled = false;
                 textBox1.Clear();
             }
             else
@@ -125,6 +127,11 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Nedobrá zpráva, špatný voucher.");
                 textBox1.Clear();
             }
+        }
+
+        private void konecToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
